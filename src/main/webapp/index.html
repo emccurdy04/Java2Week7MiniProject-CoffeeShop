@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Coffee Shop Customer Page</title>
+</head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Times New Roman, Times, serif;
+}
+
+/* Style the side navigation */
+.sidenav {
+  padding-left: 10px;
+  
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #C4A484;
+  overflow-x: hidden;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+/* Style the content */
+.content {
+  margin-left: 200px;
+  padding-left: 20px;
+}
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+  align-content: center;
+}
+
+h2{
+	text-align:center;
+}
+h3{
+	text-align:center;
+	}
+	
+</style>
+<body>
+<div class="sidenav">
+  <h1>Please Enter Customer's Information</h1>
+<form action="addCustomerServlet" method="post">
+First Name: <input type="text" name = "firstName">
+Last Name: <input type="text" name="lastName">
+Phone Number: <input type="text" name="phoneNumber">
+<br/>
+<input type = "submit" value="Add Customer">
+</form>
+<a href = "viewAllOrdersServlet">View the Customer's Order</a><br />
+<a href = "viewAllCustomersServlet">View all Customers</a><br />
+<a href = "addCustomerServlet">Create a new Customer</a>
+</div>
+
+<div class="content">
+  <h2>Coffee Shop Menu</h2>
+  <h3>Menu Information</h3>
+  <div class="gallery">
+  <a target="_blank" href="img_5terre.jpg">
+    <img src="images/pexels-cottonbro-studio-4790062.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc">Coffee Description</div>
+  <!-- Add Coffee to Order -->
+  <form action ="#addCoffeeToOrder">
+  <input type="checkbox" id="small" name="small" value="Small">
+  <label for="small"> Small</label><br>
+  <input type="checkbox" id="medium" name="medium" value="Medium">
+  <label for="medium"> Medium</label><br>
+  <input type="checkbox" id="large" name="large" value="Large">
+  <label for="large"> Large</label><br>
+   <input type="submit" value="Add to Order">
+  </form>
+</div>
+  
+</div>
+</body>
+</html>
