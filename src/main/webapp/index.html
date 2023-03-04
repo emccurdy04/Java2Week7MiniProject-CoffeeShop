@@ -76,7 +76,8 @@ h3{
 <body>
 <div class="sidenav">
   <h1>Please Enter Customer's Information</h1>
-<form action="addCustomerServlet" method="post">
+<!-- <form action="addCustomerServlet" method="post"> -->
+<form action="addOrdersServlet" method="post">
 First Name: <input type="text" name = "firstName">
 Last Name: <input type="text" name="lastName">
 Phone Number: <input type="text" name="phoneNumber">
@@ -98,14 +99,37 @@ Phone Number: <input type="text" name="phoneNumber">
   <div class="desc">Coffee Description</div>
   <!-- Add Coffee to Order -->
   <form action ="#addCoffeeToOrder">
+  <h4>Coffee Size: Small - $2.99<br/>Medium - $3.99<br />Large - $4.99</h4>
+  <label for="coffeeSize">Enter Coffee Size:</label>
+	<select id="coffeeSize" name="coffeeSizeInput" required="required">
+		<option >-select size-</option>
+		<option value="Small">Small</option>
+		<option value="Medium">Medium</option>
+		<option value="Large">Large</option>
+	</select><br>
+	<h4>Coffee Options: [1]Cappuccino<br/>[2]Expresso<br/>[3]Latte<br/>[4]Macchiato</h4>
+	<label for="coffeeType">Enter Coffee Type:</label>
+	<select id="coffeeType" name="coffeeTypeInput" required="required">
+		<option >-select type of coffee-</option>
+		<option value="Cappuccino">Cappuccino</option>
+		<option value="Expresso">Expresso</option>
+		<option value="Latte">Latte</option>
+		<option value="Macchiato">Caffe Macchiato</option>
+	</select><br />
+	<br/> 	
+	<!-- 		
   <input type="checkbox" id="small" name="small" value="Small">
   <label for="small"> Small</label><br>
   <input type="checkbox" id="medium" name="medium" value="Medium">
   <label for="medium"> Medium</label><br>
   <input type="checkbox" id="large" name="large" value="Large">
-  <label for="large"> Large</label><br>
+  <label for="large"> Large</label><br> -->
    <input type="submit" value="Add to Order">
   </form>
+  <a href="index.html">Return to main page to start a new order</a><br />
+<a href="viewAllCustomersServlet">View list of all Customers in table</a><br />
+<a href="viewAllDrinksServlet">View list of all Drinks in table</a><br />
+<a href="viewAllOrdersServlet">View all Orders in table</a>
 </div>
   
 </div>

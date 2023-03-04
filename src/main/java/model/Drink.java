@@ -6,6 +6,15 @@
 */
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import controller.DrinkHelper;
+
 /**
  * Drink class - blueprint for creating an instance of Drink
  * class object/entity to put into mySQL schema: coffee_order_management_db
@@ -13,15 +22,19 @@ package model;
  */
 //Will uncomment below annotation lines once basics working & ready to add join
 //???may not need to create an entity for this & just use it as a basic class that
-//???is used by Order class 
-//@Entity
-//@Table(name="DRINKS")
+//???is used by Order class
+@Entity
+@Table(name="DRINKS")
 public class Drink {
-	//@Column(name="DRINK_SIZE")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="DRINK_ID")
+	private int drinkID;
+	@Column(name="DRINK_SIZE")
 	private String drinkSize;
-	//@Column(name="DRINK_TYPE")
+	@Column(name="DRINK_TYPE")
 	private String drinkType;
-	//@Column(name="DRINK_PRICE")
+	@Column(name="DRINK_PRICE")
 	private double basePrice;
 	
 	
@@ -32,10 +45,12 @@ public class Drink {
 	public Drink() {
 		super();
 	}
+	
+	
 
 	/**
-	 * Non-default constructor - takes all args except basePrice since will 
-	 * be calculated based on drinkSize
+	 * Non-default constructor - takes all args except drinkID & basePrice 
+	 * since will be determined based on drinkSize
 	 * @param drinkSize
 	 * @param drinkType
 	 */
@@ -43,10 +58,33 @@ public class Drink {
 		super();
 		this.drinkSize = drinkSize;
 		this.drinkType = drinkType;
+		setBasePrice(drinkSize);
+		this.basePrice = getBasePrice();
+		//this.basePrice = setBasePrice(drinkSize);
 	}
 
+
+
 	/**
-	 * Non-default constructor - takes all args - may not need this constructor
+	 * Non-default constructor - takes all args except basePrice since will 
+	 * be calculated based on drinkSize
+	 * @param drinkID
+	 * @param drinkSize
+	 * @param drinkType
+	 */
+	public Drink(int drinkID, String drinkSize, String drinkType) {
+		super();
+		this.drinkID = drinkID;
+		this.drinkSize = drinkSize;
+		this.drinkType = drinkType;
+		setBasePrice(drinkSize);
+		this.basePrice = getBasePrice();
+	}
+	
+
+	/**
+	 * Non-default constructor - takes all args except for drinkID - 
+	 * may not need this constructor
 	 * @param drinkSize
 	 * @param drinkType
 	 * @param basePrice
@@ -58,7 +96,40 @@ public class Drink {
 		this.basePrice = basePrice;
 	}
 
+
+	/**
+	 * Non-default constructor - takes all args - may not need this constructor
+	 * @param drinkID
+	 * @param drinkSize
+	 * @param drinkType
+	 * @param basePrice
+	 */
+	public Drink(int drinkID, String drinkSize, String drinkType, double basePrice) {
+		super();
+		this.drinkID = drinkID;
+		this.drinkSize = drinkSize;
+		this.drinkType = drinkType;
+		this.basePrice = basePrice;
+	}
+
+	
 	// Getters/Setters
+	/**
+	 * @return the drinkID
+	 */
+	public int getDrinkID() {
+		return drinkID;
+	}
+
+
+	/**
+	 * @param drinkID the drinkID to set
+	 */
+	public void setDrinkID(int drinkID) {
+		this.drinkID = drinkID;
+	}	
+	
+	
 	/**
 	 * @return the drinkSize
 	 */
@@ -121,10 +192,37 @@ public class Drink {
 	}
 
 	// Helper methods
+//	@Override
+//	public String toString() {
+//		return "Drink [drinkSize=" + drinkSize + ", drinkType=" + drinkType + ", basePrice=" + basePrice + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Drink [drinkSize=" + drinkSize + ", drinkType=" + drinkType + ", basePrice=" + basePrice + "]";
+		return "Drink [drinkID=" + drinkID + ", drinkSize=" + drinkSize + ", drinkType=" + drinkType + ", basePrice="
+				+ basePrice + "]";
 	}
 	
-
+	public String showSingleDrinkDetails(Drink drink) {
+		//DrinkHelper dhdao = new DrinkHelper();
+		Drink thisDrink = drink;
+		//int thisDrinkID = thisDrink.getDrinkID();
+		//Drink thisDrink = dhdao.searchForDrinkById(drinkID);
+		StringBuilder sb = new StringBuilder();
+		sb.append("Drink: ");
+		sb.append(thisDrink.toString());
+		return sb.toString();
+	}
+	
+	public String displaySingleDrinkDetails(int drinkID) {
+		DrinkHelper dhdao = new DrinkHelper();
+		Drink thisDrink = dhdao.searchForDrinkById(drinkID);
+		StringBuilder sb = new StringBuilder();
+		sb.append("Drink: ");
+		sb.append(thisDrink.toString());
+		return sb.toString();
+	}
+	
+	
 }
+
