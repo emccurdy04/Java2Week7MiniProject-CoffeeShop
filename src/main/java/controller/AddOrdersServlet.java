@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Customer;
+import model.ListCustomer;
+//import model.Customer;
 import model.Drink;
 import model.Order;
 
@@ -43,11 +44,15 @@ public class AddOrdersServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		String fName = request.getParameter("firstName");
-		String lName = request.getParameter("lastName");
+		//??? Don't need next 3 lines if page directed to by addCustomerServlet
+		//??? Not sure if getting parameters & setting attributes on that Servlet
+		//??? will work to transfer them here??
+		//??? might need to just direct to this page when adding new customer/order
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String phoneNumber = request.getParameter("phoneNumber");
+		
+		
 		String coffeeSize = request.getParameter("coffeeSizeInput");
 		String coffeeType = request.getParameter("coffeeTypeInput");
 		
@@ -57,6 +62,13 @@ public class AddOrdersServlet extends HttpServlet {
 		OrderHelper ohdao = new OrderHelper();
 		DrinkHelper dhdao = new DrinkHelper();
 		LocalDate date = LocalDate.now();
+		
+		//?? need need way created to search for customerID via firstname, lastname, 
+		//& phone number in ListCustomerHelper that returns a ListCustomer object rather
+		// than a list - so can get customer info needed to created the order 
+		//ListCustomer newCustomer = dao.searchForCustomerByNameNumber(firstName, lastname, phoneNumber);
+		
+		//int customerID = newCustomer.getId();
 		
 		// ???create variable to hold customer object - once verify doesn't already
 		// ???exist? - should actually do this verification in AddCustomerServlet
@@ -71,13 +83,14 @@ public class AddOrdersServlet extends HttpServlet {
 		//if (fName.isEmpty() || lName.isEmpty() ||phoneNumber.isEmpty() || fName == null || lName == null || phoneNumber == null) {
 			//getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		//}
-		if (fName.isEmpty() || lName.isEmpty() || fName == null || lName == null) {
+		if (firstName.isEmpty() || lastName.isEmpty() || firstName == null || lastName == null) {
 			// return to main page if first/last name fields are empty/null
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		} else if (phoneNumber.isEmpty() || phoneNumber == null) {
 			// if phoneNumber field empty/null put in a fake number & create customer
 			String fakePhoneNumber = "515XXXZZZZ";
-			Customer newCustomer = new Customer(fName, lName, fakePhoneNumber);
+			//Customer newCustomer = new Customer(fName, lName, fakePhoneNumber);
+			ListCustomer newCustomer = new ListCustomer(firstName, lastName, fakePhoneNumber);
 			//ListCustomerHelper dao = new ListCustomerHelper();
 			dao.insertCustomer(newCustomer);
 			// ???if did leave above here once verified customer then moves on
@@ -85,7 +98,8 @@ public class AddOrdersServlet extends HttpServlet {
 			// move to page for viewing order/drinks in this order & selecting if want 
 			// to edit order - add/delete/change drink in order ?customer info?
 			// change options too???
-			int customerID = newCustomer.getCustomerID();
+			//int customerID = newCustomer.getCustomerID();
+			int customerID = newCustomer.getId();
 			// create Drink object first passing in parameters from index page
 			//using constructor: Drink(String drinkSize, String drinkType) 
 			Drink newDrink = new Drink(coffeeSize, coffeeType);
@@ -103,8 +117,8 @@ public class AddOrdersServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/viewAllOrdersServlet").forward(request, response);
 			
 		} else {
-			//ListCustomer customer = new ListCustomer(fName, lName, phoneNumber);
-			Customer newCustomer = new Customer(fName, lName, phoneNumber);
+			ListCustomer newCustomer = new ListCustomer(firstName, lastName, phoneNumber);
+			//Customer newCustomer = new Customer(fName, lName, phoneNumber);
 			//ListCustomerHelper dao = new ListCustomerHelper();
 			dao.insertCustomer(newCustomer);
 			// ???if did leave above here once verified customer then moves on
@@ -114,7 +128,8 @@ public class AddOrdersServlet extends HttpServlet {
 			// move to page for viewing order/drinks in this order & selecting if want 
 			// to edit order - add/delete/change drink in order ?customer info?
 			// change options too???
-			int customerID = newCustomer.getCustomerID();
+			//int customerID = newCustomer.getCustomerID();
+			int customerID = newCustomer.getId();
 			// create Drink object first passing in parameters from index page
 			//using constructor: Drink(String drinkSize, String drinkType) 
 			Drink newDrink = new Drink(coffeeSize, coffeeType);

@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Customer;
+import model.ListCustomer;
+//import model.Customer;
 import model.Drink;
 import model.Order;
 
@@ -59,7 +60,8 @@ public class ViewAllOrdersServlet extends HttpServlet {
 		
 		// once verified that Orders table is not empty can move all to get
 		// rest of attributes from other tables in DB. 
-		List<Customer> allCustomers = dao.showAllCustomers();
+		//List<Customer> allCustomers = dao.showAllCustomers();
+		List<ListCustomer> allCustomers = dao.showAllCustomers();
 		request.setAttribute("allCustomers", allCustomers);
 		List<Drink> allDrinks = dhdao.showAllDrinks();
 		request.setAttribute("allDrinks", allDrinks);

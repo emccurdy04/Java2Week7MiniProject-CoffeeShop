@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Customer;
+import model.ListCustomer;
+//import model.Customer;
 import model.Drink;
 import model.Order;
 
@@ -87,7 +88,8 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
 				orderToEdit.setTotalPrice(newTotalPrice);
 				Integer tempCustId = orderToEdit.getCustomerID();
-				Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
 				request.setAttribute("customerToEdit", customerToEdit);
 				//Integer tempCustId = orderToDelete.getCustomerID();
 				//ArrayList<Drink> drinkListToDelete = orderToDelete.getDrinkList();
@@ -130,7 +132,8 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
 				orderToEdit.setTotalPrice(newTotalPrice);
 				Integer tempCustId = orderToEdit.getCustomerID();
-				Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
 				request.setAttribute("customerToEdit", customerToEdit);
 				// get updated Order object's drinkListToEdit after drink edited
 				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
@@ -158,7 +161,8 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
 				orderToEdit.setTotalPrice(newTotalPrice);
 				Integer tempCustId = orderToEdit.getCustomerID();
-				Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
 				request.setAttribute("customerToEdit", customerToEdit);
 				// get updated drinkListToEdit after new drink added to order
 				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();

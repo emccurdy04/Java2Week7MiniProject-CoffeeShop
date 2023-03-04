@@ -16,7 +16,8 @@ import javax.persistence.TypedQuery;
 
 import model.Drink;
 import model.Order;
-import model.Customer;
+//import model.Customer;
+import model.ListCustomer;
 
 /**
  * OrderHelper class DAO Data Access Object - does all the

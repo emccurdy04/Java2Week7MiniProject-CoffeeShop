@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Customer;
+import model.ListCustomer;
+//import model.Customer;
 import model.Drink;
 import model.Order;
 
@@ -50,7 +51,8 @@ public class ViewAllDrinksServlet extends HttpServlet {
 		// rest of attributes from other tables in DB. 
 		// ??? may not need these, but setting attributes in case need anything
 		// ??? from these other tables
-		List<Customer> allCustomers = dao.showAllCustomers();
+		//List<Customer> allCustomers = dao.showAllCustomers();
+		List<ListCustomer> allCustomers = dao.showAllCustomers();
 		request.setAttribute("allCustomers", allCustomers);
 		List<Order> allOrders = ohdao.showAllOrders();
 		request.setAttribute("allOrders", allOrders);

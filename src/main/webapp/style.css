@@ -1,0 +1,133 @@
+@charset "ISO-8859-1";
+ /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      h1, h2 {
+        margin-top: 0;
+      }
+      
+      /* Header styles */
+      header {
+        background-color: #5D4037;
+        color: #FFFFFF;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      /* Navigation styles */
+      nav {
+        background-color: #8D6E63;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+      }
+      
+      nav a {
+        color: #FFFFFF;
+        text-decoration: none;
+        padding: 10px;
+      }
+      
+      nav a:hover {
+        background-color: #FFFFFF;
+        color: #8D6E63;
+      }
+      
+      /* Main content styles */
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+      }
+      
+      /* Coffee menu styles */
+      .coffee-menu {
+        background-color: #F5F5F5;
+        border: 1px solid #CCCCCC;
+        margin-bottom: 20px;
+        padding: 20px;
+        text-align: center;
+        width: 30%;
+      }
+      
+      .coffee-menu h2 {
+        color: #8D6E63;
+      }
+      
+      .coffee-menu p {
+        font-size: 14px;
+        margin: 10px 0;
+      }
+      
+      .coffee-menu select {
+        font-size: 14px;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+      
+      .coffee-menu input[type="radio"] {
+        margin: 10px;
+      }
+      
+      .coffee-menu input[type="submit"] {
+        background-color: #8D6E63;
+        border: none;
+        color: #FFFFFF;
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      
+      .coffee-menu input[type="submit"]:hover {
+        background-color: #FFFFFF;
+        color: #8D6E63;
+        cursor: pointer;
+      }
+      
+      /* Add customer styles */
+      .add-customer {
+        background-color: #F5F5F5;
+        border: 1px solid #CCCCCC;
+        margin-bottom: 20px;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+      }
+      
+      .add-customer label {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      
+      .add-customer input[type="text"],
+      .add-customer input[type="tel"] {
+        font-size: 14px;
+        padding: 5px;
+      }
+      
+      .add-customer input[type="submit"] {
+        background-color: #8D6E63;
+        border: none;
+        color: #FFFFFF;
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      
+      .add-customer input[type="submit"]:hover {
+        background-color: #FFFFFF;
+        color: #8D6E63;
+        cursor: pointer;
+      }
+      
+      /* Footer styles */
+      footer {
+        background-color: #5D4037;
+        color: #FFFFFF;
+        padding: 20px;
+        text-align: center;
+      }

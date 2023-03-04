@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import model.ListCustomer;
-import model.Customer;
+import model.ListCustomer;
+//import model.Customer;
 
 
 /**
@@ -33,18 +33,26 @@ public class AddCustomerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String fName = request.getParameter("firstName");
-		String lName = request.getParameter("lastName");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String phoneNumber = request.getParameter("phoneNumber");
-		if (fName.isEmpty() || lName.isEmpty() ||phoneNumber.isEmpty() || fName == null || lName == null || phoneNumber == null) {
+		if (firstName.isEmpty() || lastName.isEmpty() ||phoneNumber.isEmpty() || firstName == null || lastName == null || phoneNumber == null) {
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		} else {
-			//ListCustomer li = new ListCustomer(fName, lName, phoneNumber);
-			Customer li = new Customer(fName, lName, phoneNumber);
+			ListCustomer li = new ListCustomer(firstName, lastName, phoneNumber);
+			//Customer li = new Customer(firstName, lastName, phoneNumber);
 			ListCustomerHelper dao = new ListCustomerHelper();
 			dao.insertCustomer(li);
-
-			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+			//??? not sure if this will work
+			//??? set customer attribute as well as coffeeSize/coffeeType to be sent 
+			//??? to addOrdersServlet after new customer created
+			//String coffeeSize = request.getParameter("coffeeSizeInput");
+			//String coffeeType = request.getParameter("coffeeTypeInput");
+			request.setAttribute("customer", li);
+			//request.setAttribute("coffeeSize", coffeeSize);
+			//request.setAttribute("coffeeType", coffeeType);
+			//getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+			getServletContext().getRequestDispatcher("addOrdersServlet").forward(request, response);
 		}
 	}
 

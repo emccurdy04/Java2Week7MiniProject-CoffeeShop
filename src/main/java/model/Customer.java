@@ -8,37 +8,39 @@ package model;
 
 import java.util.ArrayList;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+//import javax.persistence.CascadeType;
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.FetchType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.JoinTable;
+//import javax.persistence.OneToMany;
+//import javax.persistence.Table;
 
 /**
  * Customer class - blueprint for creating and instance of Customer
  * class object/entity to put into mySQL schema: coffee_order_management_db
  * tables.  
  */
-@Entity
-@Table(name="Customers")
+//@Entity
+//@Table(name="Customers")
+//@Table(name="CustomersV1")
 public class Customer {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="CUSTOMERID")
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column(name="CUSTOMERID")
 	private int customerID;
-	@Column(name="FIRSTNAME")
+	//@Column(name="FIRSTNAME")
 	private String firstName;
-	@Column(name="LASTNAME")
+	//@Column(name="LASTNAME")
 	private String lastName;
-	@Column(name="PHONENUMBER")
+	//@Column(name="PHONENUMBER")
 	private String phoneNumber;
-	
+
+	// Commented out while doing trial of using ListCustomer version 
 	// Will add in the joins later once sure just the simple customer table creation
 	// is working for both of us
 	//@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
@@ -52,7 +54,7 @@ public class Customer {
 	//@OneToMany(mappedBy="customerID", targetEntity=model.Order.class, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
 	//@OneToMany(mappedBy="orders", targetEntity=model.Order.class, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
 	//@Column(name="CUST_ORDER_LIST")
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	//@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private ArrayList<Order> orders = new ArrayList<>();
 
 	//Constructors
@@ -210,17 +212,17 @@ public class Customer {
 		return formattedPhoneNum;
 	}
 	
-	public String displayOrderList() {
-		ArrayList<Order> orders = this.orders;
-		StringBuilder sb = new StringBuilder();
-		sb.append("Customer Order List: \n");
-		for (Order order : orders) {
-			// may want to change to a specific formatted version rather than toString()
-			// method such as creating an Order class method ?displayOrder()
-			sb.append(order.toString() + "\n");
-		}
-		return sb.toString();
-	}
+//	public String displayOrderList() {
+//		ArrayList<Order> orders = this.orders;
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("Customer Order List: \n");
+//		for (Order order : orders) {
+//			// may want to change to a specific formatted version rather than toString()
+//			// method such as creating an Order class method ?displayOrder()
+//			sb.append(order.toString() + "\n");
+//		}
+//		return sb.toString();
+//	}
 
 	@Override
 	public String toString() {

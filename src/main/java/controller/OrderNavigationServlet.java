@@ -16,8 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Customer;
+//import model.Customer;
 import model.Drink;
+import model.ListCustomer;
 import model.Order;
 
 
@@ -101,7 +102,8 @@ public class OrderNavigationServlet extends HttpServlet {
 				Order orderToEdit = ohdao.searchForOrderById(tempId);
 				request.setAttribute("orderToEdit", orderToEdit);
 				Integer tempCustId = orderToEdit.getCustomerID();
-				Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
 				request.setAttribute("customerToEdit", customerToEdit);
 				ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
 				request.setAttribute("drinkListToEdit", drinkListToEdit);
@@ -115,7 +117,8 @@ public class OrderNavigationServlet extends HttpServlet {
 				Order orderToEdit = ohdao.searchForOrderById(tempId);
 				request.setAttribute("orderToEdit", orderToEdit);
 				Integer tempCustId = orderToEdit.getCustomerID();
-				Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
+				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
 				request.setAttribute("customerToEdit", customerToEdit);
 				ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
 				request.setAttribute("drinkListToEdit", drinkListToEdit);

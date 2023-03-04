@@ -2,104 +2,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Coffee Shop Customer Page</title>
+<title>Coffee Shop Customer/Order Index Page</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<style>
-* {
-  box-sizing: border-box;
-}
+	<script>
+      function fillCustomerInfo() {
+        // Get customer first and last name input
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var phoneNumber = document.getElementById("phoneNumber").value;
+        
+        // Fill name fields in both order forms
+        document.getElementById("firstName").value = firstName;
+        document.getElementById("lastName").value = lastName;
+        document.getElementById("phoneNumber").value = phoneNumber;
+        
+      }
+    </script>
 
-body {
-  margin: 0;
-  font-family: Times New Roman, Times, serif;
-}
-
-/* Style the side navigation */
-.sidenav {
-  padding-left: 10px;
-  
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #C4A484;
-  overflow-x: hidden;
-}
-
-
-/* Side navigation links */
-.sidenav a {
-  color: white;
-  padding: 16px;
-  text-decoration: none;
-  display: block;
-}
-
-
-/* Style the content */
-.content {
-  margin-left: 200px;
-  padding-left: 20px;
-}
-div.gallery {
-  margin: 5px;
-  border: 1px solid #ccc;
-  float: left;
-  width: 180px;
-}
-
-div.gallery:hover {
-  border: 1px solid #777;
-}
-
-div.gallery img {
-  width: 100%;
-  height: auto;
-}
-
-div.desc {
-  padding: 15px;
-  text-align: center;
-  align-content: center;
-}
-
-h2{
-	text-align:center;
-}
-h3{
-	text-align:center;
-	}
-	
-</style>
 <body>
-<div class="sidenav">
-  <h1>Please Enter Customer's Information</h1>
-<!-- <form action="addCustomerServlet" method="post"> -->
-<form action="addOrdersServlet" method="post">
-First Name: <input type="text" name = "firstName">
-Last Name: <input type="text" name="lastName">
-Phone Number: <input type="text" name="phoneNumber">
-<br/>
-<input type = "submit" value="Add Customer">
-</form>
-<a href = "viewAllOrdersServlet">View the Customer's Order</a><br />
-<a href = "viewAllCustomersServlet">View all Customers</a><br />
-<a href = "addCustomerServlet">Create a new Customer</a>
-</div>
-
-<div class="content">
-  <h2>Coffee Shop Menu</h2>
-  <h3>Menu Information</h3>
-  <div class="gallery">
-  <a target="_blank" href="img_5terre.jpg">
-    <img src="images/pexels-cottonbro-studio-4790062.jpg" alt="Cinque Terre" width="600" height="400">
-  </a>
-  <div class="desc">Coffee Description</div>
-  <!-- Add Coffee to Order -->
-  <form action ="#addCoffeeToOrder">
-  <h4>Coffee Size: Small - $2.99<br/>Medium - $3.99<br />Large - $4.99</h4>
+	<header>
+      <h1>Coffee Shop Menu</h1>
+    </header>
+    
+    <nav>
+      	<!-- <a href="index.html">Home</a> 
+      	<a href="index.html">Add New Customer Order</a>
+      	<a href="viewAllCustomersServlet">View All Customers</a>-->
+     	<a href="index.html">Return to main page to add a new customer and start a new order</a>
+		<a href="viewAllCustomersServlet">View All Customers in table</a>
+		<a href="viewAllOrdersServlet">View All Orders in table</a>
+		<a href="#">View All Orders</a>
+		<a href="viewAllDrinksServlet">View All Drinks in table</a>
+    </nav>
+<main>
+<img src="images/lat.jpg" alt="COFFEE" width="600" height="475">
+      
+      
+      <div class="coffee-menu">
+      <form id="form1" method="post" action="addOrdersServlet">
+        <!-- <form id="form1" method="post" action="addCustomerServlet"> -->
+      <h2>Customer's Order</h2>
+      <label for="firstName">First Name:</label>
+      <input type="text" name="firstName" id="firstName">
+      <br><br>
+      <label for="lastName">Last Name:</label>
+      <input type="text" name="lastName" id="lastName">
+      <br><br>
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" name="phoneNumber" id="phoneNumber">
+      <br><br>
+      
+      <h4>Coffee Size: Small - $2.99<br/>Medium - $3.99<br />Large - $4.99</h4>
   <label for="coffeeSize">Enter Coffee Size:</label>
 	<select id="coffeeSize" name="coffeeSizeInput" required="required">
 		<option >-select size-</option>
@@ -115,23 +69,23 @@ Phone Number: <input type="text" name="phoneNumber">
 		<option value="Expresso">Expresso</option>
 		<option value="Latte">Latte</option>
 		<option value="Macchiato">Caffe Macchiato</option>
-	</select><br />
-	<br/> 	
-	<!-- 		
-  <input type="checkbox" id="small" name="small" value="Small">
-  <label for="small"> Small</label><br>
-  <input type="checkbox" id="medium" name="medium" value="Medium">
-  <label for="medium"> Medium</label><br>
-  <input type="checkbox" id="large" name="large" value="Large">
-  <label for="large"> Large</label><br> -->
-   <input type="submit" value="Add to Order">
-  </form>
-  <a href="index.html">Return to main page to start a new order</a><br />
-<a href="viewAllCustomersServlet">View list of all Customers in table</a><br />
-<a href="viewAllDrinksServlet">View list of all Drinks in table</a><br />
-<a href="viewAllOrdersServlet">View all Orders in table</a>
-</div>
-  
-</div>
+	</select>
+	<br><br> 
+    <!--Commenting out milkType for now--> 
+    <!--<label for="milkType">Milk type:</label>
+    <br>
+    <input type="radio" name="milkType" value="whole" checked> Whole
+    <input type="radio" name="milkType" value="skim"> Skim
+    <input type="radio" name="milkType" value="soy"> Soy
+    <br><br> -->
+    <input type="submit" value="Submit Customer's Order">
+    </form>
+      </div>
+
+</main>    
+
+	<footer>
+      <p>&copy; 2023 Coffee Shop</p>
+	</footer>
 </body>
 </html>

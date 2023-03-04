@@ -62,11 +62,13 @@ public class Order {
 	//@JoinColumn(name="CUSTOMERID", referencedColumnName="customerID")
 	//@ManyToOne(cascade=CascadeType.MERGE, targetEntity=model.Customer.class, fetch=FetchType.EAGER)
 	
-	@Column(name="CUSTOMER_ID")
+	//@Column(name="CUSTOMER_ID")
+	@Column(name="customerID")
 	private int customerID;
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=model.ListCustomer.class, fetch=FetchType.EAGER)
 	//@ManyToOne Customer customer;
-	private Customer customer;
+	//private Customer customer;
+	private ListCustomer customer;
 	
 	// - changed to double to stay consistent w/ Drink class 
 	// - changed name from price to TOTAL_PRICE to be more descriptive
@@ -308,8 +310,10 @@ public class Order {
 	public String displayOrderDetails() {
 		ListCustomerHelper dao = new ListCustomerHelper();
 		int customerID = this.customerID;
-		Customer customer = dao.searchForCustomerById(customerID);
-		String customerDetails = customer.customerInfoDetails();
+		//Customer customer = dao.searchForCustomerById(customerID);
+		//String customerDetails = customer.customerInfoDetails();
+		ListCustomer customer = dao.searchForCustomerById(customerID);
+		String customerDetails = customer.returnCustomerDetails();
 		ArrayList<Drink> drinkList = this.drinkList;
 		int orderID = this.orderID;
 		LocalDate orderDate = this.date;
