@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coffee Shop</title>
+    <style>
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      h1, h2 {
+        margin-top: 0;
+      }
+      
+      /* Header styles */
+      header {
+        background-color: #5D4037;
+        color: #FFFFFF;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      /* Navigation styles */
+      nav {
+        background-color: #8D6E63;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+      }
+      
+      nav a {
+        color: #FFFFFF;
+        text-decoration: none;
+        padding: 10px;
+      }
+      
+      nav a:hover {
+        background-color: #FFFFFF;
+        color: #8D6E63;
+      }
+      
+      /* Main content styles */
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+      }
+      
+      /* Coffee menu styles */
+      .coffee-menu {
+        background-color: #F5F5F5;
+        border: 1px solid #CCCCCC;
+        margin-bottom: 20px;
+        padding: 20px;
+        text-align: center;
+        width: 30%;
+      }
+      
+      .coffee-menu h2 {
+        color: #8D6E63;
+      }
+      
+      .coffee-menu p {
+        font-size: 14px;
+        margin: 10px 0;
+      }
+      
+      .coffee-menu select {
+        font-size: 14px;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+      
+      .coffee-menu input[type="radio"] {
+        margin: 10px;
+      }
+      
+      .coffee-menu input[type="submit"] {
+        background-color: #8D6E63;
+        border: none;
+        color: #FFFFFF;
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      
+      .coffee-menu input[type="submit"]:hover {
+        background-color: #FFFFFF;
+        color: #8D6E63;
+        cursor: pointer;
+      }
+      
+      /* Add customer styles */
+      .add-customer {
+        background-color: #F5F5F5;
+        border: 1px solid #CCCCCC;
+        margin-bottom: 20px;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+      }
+      
+      .add-customer label {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      
+      .add-customer input[type="text"],
+      .add-customer input[type="tel"] {
+        font-size: 14px;
+        padding: 5px;
+      }
+      
+      .add-customer input[type="submit"] {
+        background-color: #8D6E63;
+        border: none;
+        color: #FFFFFF;
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      
+      .add-customer input[type="submit"]:hover {
+        background-color: #FFFFFF;
+        color: #8D6E63;
+        cursor: pointer;
+      }
+      
+      /* Footer styles */
+      footer {
+        background-color: #5D4037;
+        color: #FFFFFF;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+   <script>
+      function fillCustomerName() {
+        // Get customer first and last name input
+        var firstName = document.getElementById("first_name").value;
+        var lastName = document.getElementById("last_name").value;
+        var phoneNumber = document.getElementById("phone_number").value;
+        
+        // Fill name fields in both order forms
+        document.getElementById("first_name").value = firstName;
+        document.getElementById("last_name").value = lastName;
+        document.getElementById("phone_number").value = phoneNumber;
+        
+      }
+    </script>
+  <body>
+    <header>
+      <h1>Coffee Shop Menu</h1>
+    </header>
+    
+    <nav>
+      <a href="#">Home</a>
+      <a href="AddCustomerServlet">Add New Customer</a>
+      <a href="viewAllCustomersServlet">View All Customer's</a>
+      <a href="#">View All Orders</a>
+    </nav>
+    
+    <main>
+    <img src="imgs/lat.jpg" alt="COFFEE" width="600" height="475">
+      
+      
+      <div class="coffee-menu">
+        <form id="form1" method="post" action="results.jsp">
+      <h2>Customer's Order</h2>
+      <label for="form1_first_name">First Name:</label>
+      <input type="text" name="form1_first_name" id="form1_first_name">
+      <br><br>
+      <label for="form1_last_name">Last Name:</label>
+      <input type="text" name="form1_last_name" id="form1_last_name">
+      <br><br>
+      <label for="form1_phone_number">Phone Number:</label>
+      <input type="text" name="form1_phone_number" id="form1_phone_number">
+      <br><br>
+      <label for="form1_size">Size:</label>
+      <br>
+      <input type="radio" name="form1_size" value="small" checked> Small
+      <input type="radio" name="form1_size" value="medium"> Medium
+      <input type="radio" name="form1_size" value="large"> Large
+      <br><br>
+      <label for="form1_coffee_type">Coffee type:</label>
+      <br>
+      <select name="form1_coffee_type">
+        <option value="espresso">Espresso</option>
+        <option value="latte">Latte</option>
+        <option value="cappuccino">Cappuccino</option>
+        <option value="macchiato">Macchiato</option>
+      </select>
+      <br><br>
+      <label for="form1_milk_type">Milk type:</label>
+      <br>
+      <input type="radio" name="form1_milk_type" value="whole" checked> Whole
+      <input type="radio" name="form1_milk_type" value="skim"> Skim
+      <input type="radio" name="form1_milk_type" value="soy"> Soy
+      <br><br>
+      <input type="submit" value="Submit Customer's Order">
+    </form>
+      </div>
+      
+     
+ 
+    </main>
+    
+    <footer>
+      <p>&copy; 2023 Coffee Shop</p>
+    </footer>
+  </body>
+</html>
+          
+        
+<!--For some reason it is connecting to my old index.html, so will need to fix that-->
