@@ -30,7 +30,7 @@ import javax.persistence.Table;
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="CUSTOMER_ID")
+	@Column(name="CUSTOMERID")
 	private int customerID;
 	@Column(name="FIRSTNAME")
 	private String firstName;
@@ -46,6 +46,13 @@ public class Customer {
 	//@JoinTable(name="CUSTOMER_ORDER_IDS", joinColumns= @JoinColumn(name="CUSTOMER_ID"), inverseJoinColumns = @JoinColumn(name="ORDER_ID"))
 	// ArrayList to hold list of any Orders class objects/entities for each 
 	// Customer class object/entity
+	//@JoinTable(name="CUSTOMER_ORDER_IDS", joinColumns= @JoinColumn(name="CUSTOMER_ID"), inverseJoinColumns = @JoinColumn(name="ORDER_ID"))
+	//@OneToMany(mappedBy="CUSTOMER", targetEntity=model.Order.class, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+	//@OneToMany(mappedBy="customerID", targetEntity=model.Order.class, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+	//@OneToMany(mappedBy="customerID", targetEntity=model.Order.class, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+	//@OneToMany(mappedBy="orders", targetEntity=model.Order.class, cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.EAGER)
+	//@Column(name="CUST_ORDER_LIST")
+	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private ArrayList<Order> orders = new ArrayList<>();
 
 	//Constructors

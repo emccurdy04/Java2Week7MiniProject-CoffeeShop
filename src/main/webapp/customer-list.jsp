@@ -8,7 +8,7 @@
 <title>Customer-List Coffee Shop</title>
 </head>
 <body>
-<header>Coffee Shop Customers List: </header>
+<header style="background-color: #C4A484; color: white; text-align:center;">Coffee Shop Customers List: </header>
 <form method = "post" action="navigationServlet">
 <h2>4 Versions of displaying customer list and select one customer to edit/delete</h2>
 <table>
