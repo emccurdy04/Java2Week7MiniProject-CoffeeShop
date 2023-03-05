@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 //import model.Customer;
 import model.Drink;
-import model.ListCustomer;
+//import model.ListCustomer;
 import model.Order;
 
 
@@ -56,11 +56,12 @@ public class OrderNavigationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ListCustomerHelper dao = new ListCustomerHelper();
+		//ListCustomerHelper dao = new ListCustomerHelper();
 		OrderHelper ohdao = new OrderHelper();
 		DrinkHelper dhdao = new DrinkHelper();
 		
 		String act = request.getParameter("doThisToOrder");
+		//Integer tempId = Integer.parseInt(request.getParameter("orderID"));
 		
 		// depending on selection of user OrderNavigationServlet will by default
 		// re-display the selected order with drink/customer details - unless
@@ -71,60 +72,63 @@ public class OrderNavigationServlet extends HttpServlet {
 		if (act == null) {
 			//no button selected - refresh page
 			getServletContext().getRequestDispatcher("/viewAllOrdersServlet").forward(request, response);
-		} else if (act.equals("delete")) {
+		} else if (act.equalsIgnoreCase("deleteOrder")) {
 			try {
 				Integer tempId = Integer.parseInt(request.getParameter("orderID"));
 				Order orderToDelete = ohdao.searchForOrderById(tempId);
+				ohdao.deleteOrder(orderToDelete);
 				//Integer tempCustId = orderToDelete.getCustomerID();
-				ArrayList<Drink> drinkListToDelete = orderToDelete.getDrinkList();
+				//ArrayList<Drink> drinkListToDelete = orderToDelete.getDrinkList();
 				//???can't delete customer at this point since a customer can have 
 				//???more than one order - would have to do through a customer delete
 				//???that then removes all associated orders & drinks for that customer
 				//Customer customerToDelete = dao.searchForCustomerById(tempCustId);
 				//dao.deleteCustomer(customerToDelete);
-				for (Drink drink : drinkListToDelete) {
-					dhdao.deleteDrink(drink);
-				}
-				ohdao.deleteOrder(orderToDelete);
-				
+				//for (Drink drink : drinkListToDelete) {
+				//	dhdao.deleteDrink(drink);
+				//}
+				//ohdao.deleteOrder(orderToDelete);
+				getServletContext().getRequestDispatcher("/viewAllOrdersServlet").forward(request, response);
 			} catch (NumberFormatException e) {
 				//??? may not need catch since also did an act == null above
-				System.out.println("Forgot to select an order");
-			} finally {
+				System.out.println("Forgot to select an order to delete");
+			} //finally {
 				//route to ViewAllOrdersServlet after to display all remaining orders
 				//in table once completed order delete
-				getServletContext().getRequestDispatcher("/viewAllOrdersServlet").forward(request, response);
+				//getServletContext().getRequestDispatcher("/viewAllOrdersServlet").forward(request, response);
 				//path="/viewAllOrdersServlet";
-			}
-		} else if (act.equals("edit")) {
+			//}
+		} else if (act.equalsIgnoreCase("editOrder")) {
 			try {
 				Integer tempId = Integer.parseInt(request.getParameter("orderID"));
 				Order orderToEdit = ohdao.searchForOrderById(tempId);
 				request.setAttribute("orderToEdit", orderToEdit);
-				Integer tempCustId = orderToEdit.getCustomerID();
+				//Integer tempCustId = orderToEdit.getCustomerID();
 				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
-				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
-				request.setAttribute("customerToEdit", customerToEdit);
-				ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
-				request.setAttribute("drinkListToEdit", drinkListToEdit);
-				path="/view-edit-thisOrder.jsp";
+				//ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//request.setAttribute("customerToEdit", customerToEdit);
+				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
+				//request.setAttribute("drinkListToEdit", drinkListToEdit);
+				//path="/view-edit-thisOrder.jsp";
+				getServletContext().getRequestDispatcher("/view-edit-thisOrder.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
-				System.out.println("Forgot to select an order");
+				System.out.println("Forgot to select an order to edit");
 			}
-		} else if (act.equals("add")) {
+		} else if (act.equalsIgnoreCase("addToOrder")) {
 			try {
 				Integer tempId = Integer.parseInt(request.getParameter("orderID"));
 				Order orderToEdit = ohdao.searchForOrderById(tempId);
 				request.setAttribute("orderToEdit", orderToEdit);
-				Integer tempCustId = orderToEdit.getCustomerID();
+				//Integer tempCustId = orderToEdit.getCustomerID();
 				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
-				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
-				request.setAttribute("customerToEdit", customerToEdit);
-				ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
-				request.setAttribute("drinkListToEdit", drinkListToEdit);
-				path="/view-edit-thisOrder.jsp";
+				//ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//request.setAttribute("customerToEdit", customerToEdit);
+				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
+				//request.setAttribute("drinkListToEdit", drinkListToEdit);
+				//path="/view-edit-thisOrder.jsp";
+				getServletContext().getRequestDispatcher("/view-edit-thisOrder.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
-				System.out.println("Forgot to select an order");
+				System.out.println("Forgot to select an order to add drinks to");
 			}
 		}
 		getServletContext().getRequestDispatcher(path).forward(request, response);

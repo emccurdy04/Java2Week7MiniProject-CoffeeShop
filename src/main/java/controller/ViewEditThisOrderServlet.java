@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ListCustomer;
+//import model.ListCustomer;
 //import model.Customer;
 import model.Drink;
 import model.Order;
@@ -53,7 +53,7 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ListCustomerHelper dao = new ListCustomerHelper();
+		//ListCustomerHelper dao = new ListCustomerHelper();
 		OrderHelper ohdao = new OrderHelper();
 		DrinkHelper dhdao = new DrinkHelper();
 		
@@ -73,7 +73,7 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 			//no button selected - refresh page
 			//getServletContext().getRequestDispatcher("/viewAllOrdersServlet").forward(request, response);
 			path="/view-edit-thisOrder.jsp";
-		} else if (act.equals("delete")) {
+		} else if (act.equalsIgnoreCase("deleteDrinkFromOrder")) {
 			try {
 				Integer tempOrderId = Integer.parseInt(request.getParameter("orderID"));
 				Integer tempDrinkId = Integer.parseInt(request.getParameter("drinkID"));
@@ -87,10 +87,10 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				request.setAttribute("drinkListToEdit", drinkListToEdit);
 				double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
 				orderToEdit.setTotalPrice(newTotalPrice);
-				Integer tempCustId = orderToEdit.getCustomerID();
+				//Integer tempCustId = orderToEdit.getCustomerID();
 				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
-				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
-				request.setAttribute("customerToEdit", customerToEdit);
+				//ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//request.setAttribute("customerToEdit", customerToEdit);
 				//Integer tempCustId = orderToDelete.getCustomerID();
 				//ArrayList<Drink> drinkListToDelete = orderToDelete.getDrinkList();
 				//???can't delete customer at this point since a customer can have 
@@ -114,7 +114,7 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				//path="/viewAllOrdersServlet";
 				//path="/view-edit-thisOrder.jsp";
 			//}
-		} else if (act.equals("edit")) {
+		} else if (act.equalsIgnoreCase("editDrink")) {
 			try {
 				Integer tempOrderId = Integer.parseInt(request.getParameter("orderID"));
 				Integer tempDrinkId = Integer.parseInt(request.getParameter("drinkID"));
@@ -131,10 +131,10 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				request.setAttribute("drinkListToEdit", drinkListToEdit);
 				double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
 				orderToEdit.setTotalPrice(newTotalPrice);
-				Integer tempCustId = orderToEdit.getCustomerID();
+				//Integer tempCustId = orderToEdit.getCustomerID();
 				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
-				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
-				request.setAttribute("customerToEdit", customerToEdit);
+				//ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//request.setAttribute("customerToEdit", customerToEdit);
 				// get updated Order object's drinkListToEdit after drink edited
 				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
 				//request.setAttribute("drinkListToEdit", drinkListToEdit);
@@ -144,7 +144,7 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to select a drink to edit in order");
 			}
-		} else if (act.equals("add")) {
+		} else if (act.equalsIgnoreCase("addDrinkToOrder")) {
 			try {
 				Integer tempOrderId = Integer.parseInt(request.getParameter("orderID"));
 				String coffeeSize = request.getParameter("coffeeSizeInput");
@@ -160,10 +160,10 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				request.setAttribute("drinkListToEdit", drinkListToEdit);
 				double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
 				orderToEdit.setTotalPrice(newTotalPrice);
-				Integer tempCustId = orderToEdit.getCustomerID();
+				//Integer tempCustId = orderToEdit.getCustomerID();
 				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
-				ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
-				request.setAttribute("customerToEdit", customerToEdit);
+				//ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
+				//request.setAttribute("customerToEdit", customerToEdit);
 				// get updated drinkListToEdit after new drink added to order
 				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
 				//request.setAttribute("drinkListToEdit", drinkListToEdit);

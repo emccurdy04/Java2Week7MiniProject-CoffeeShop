@@ -1,25 +1,38 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.ArrayList;
 
-@Entity
-@Table(name="Customers")
+//import javax.persistence.CascadeType;
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.FetchType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+//import javax.persistence.OneToMany;
+//import javax.persistence.Table;
+
+//@Entity
+//@Table(name="Customers")
 public class ListCustomer {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	//@Id
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@Column(name="ID")
 	private int id;
-	@Column(name="firstName")
+	//@Column(name="firstName")
 	private String firstName;
-	@Column(name="lastName")
+	//@Column(name="lastName")
 	private String lastName;
-	@Column(name="phoneNumber")
+	//@Column(name="phoneNumber")
 	private String phoneNumber;
+	
+	//Trial of adding this below to help w/ joins
+	//@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	//@OneToMany(cascade=CascadeType.MERGE, targetEntity=model.Order.class, fetch=FetchType.EAGER)
+	//@OneToMany(cascade=CascadeType.MERGE, targetEntity=model.Order.class, fetch=FetchType.EAGER, orphanRemoval=true)
+	//private ArrayList<Order> orders = new ArrayList<>();
+	private ArrayList<Order> ordersList = new ArrayList<>();
+
 	
 	public ListCustomer() {
 		super();

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ListCustomer;
+//import model.ListCustomer;
 //import model.Customer;
 import model.Drink;
 import model.Order;
@@ -35,7 +35,7 @@ public class ViewAllDrinksServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ListCustomerHelper dao = new ListCustomerHelper();
+		//ListCustomerHelper dao = new ListCustomerHelper();
 		OrderHelper ohdao = new OrderHelper();
 		DrinkHelper dhdao = new DrinkHelper();
 		
@@ -52,12 +52,12 @@ public class ViewAllDrinksServlet extends HttpServlet {
 		// ??? may not need these, but setting attributes in case need anything
 		// ??? from these other tables
 		//List<Customer> allCustomers = dao.showAllCustomers();
-		List<ListCustomer> allCustomers = dao.showAllCustomers();
-		request.setAttribute("allCustomers", allCustomers);
+		//List<ListCustomer> allCustomers = dao.showAllCustomers();
+		//request.setAttribute("allCustomers", allCustomers);
 		List<Order> allOrders = ohdao.showAllOrders();
 		request.setAttribute("allOrders", allOrders);
 		
-		getServletContext().getRequestDispatcher("all-drinks-list.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/all-drinks-list.jsp").forward(request, response);
 		
 		
 	}

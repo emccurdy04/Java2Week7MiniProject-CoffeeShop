@@ -7,95 +7,98 @@
 <meta charset="UTF-8">
 <title>CoffeeShop Page to display Selected Order object so user can select/edit order or add a Drink </title>
 </head>
-<style type="text/css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- <style type="text/css">
 body {font-family: Times New Roman, Times, serif;}
-</style>
+</style> -->
 
 <body>
 
 <header><h1 style="background-color: #C4A484; color: white; text-align:center;">
-Coffee Shop: View/Edit/Add Drink Order Page</h1></header>
+Coffee Shop: View/Edit/Add Drink to Order Page</h1></header>
+<nav>
+      	<!-- <a href="index.html">Home</a> -->
+      	<!-- <a href="index.html">Add New Customer Order</a>-->
+      	<!-- <a href="viewAllCustomersServlet">View All Customers</a>-->
+     	<a href="index.html">Return to main page to add a new customer and start a new order</a>
+		<!-- <a href="viewAllCustomersServlet">View All Customers in table</a>-->
+		<a href="viewAllOrdersServlet">View All Orders in table</a>
+		<!--  <a href="#">View All Orders</a>-->
+		<a href="viewAllDrinksServlet">View All Drinks in table</a>
+</nav>
 
-<h5>1st version of view/edit list of drinks in this order</h5>
+<h2>View/edit list of drinks in this order</h2>
+<${requestScope.orderToEdit}>
+<!-- ${requestScope.drinkListToEdit} -->
 
-<div>
-<h2>Customer: ${customerToEdit.firstName} ${customerToEdit.lastName} <br />
- Order: ${orderToEdit.orderID} </h2>
+<!-- <h2>Customer: ${customerToEdit.firstName} ${customerToEdit.lastName} <br />
+ Order: ${orderToEdit.orderID} </h2> -->
+ 
+ <h3>Customer: ${orderToEdit.firstName} ${orderToEdit.lastName} <br />
+ Order #: ${orderToEdit.orderID} </h3>
 
 <form method="post" action="viewEditThisOrderServlet">
 <h3>Please select drink to edit. </h3> <br/>
 <input type="hidden" name="orderID" value="${orderToEdit.orderID}">
-<input type="hidden" name="drinkID" value="${currentdrink.drinkID}">
+<input type="radio" name="drinkID" value="${currentdrink.drinkID}">
 <!-- 
 <c:forEach items="${requestScope.drinkListToEdit}" var="currentdrink"></c:forEach> -->
 <c:forEach items="${orderToEdit.drinkList}" var="currentdrink">
-Drink ID: ${currentdrink.drinkID} <br/>
+Drink #: ${currentdrink.drinkID} <br/>
 Drink Size: <select id="coffeeSize" name="coffeeSizeInput">
-		<option value="${currentdrink.coffeeSize}">${currentdrink.coffeeSize}</option>
+		<option value="${currentdrink.drinkSize}">${currentdrink.drinkSize}</option>
 		<option value="small">small</option>
 		<option value="medium">medium</option>
 		<option value="large">large</option>
 	</select><br />
 <br>
 Drink Type:<select id="coffeeType" name="coffeeTypeInput">
-		<option value="${currentdrink.coffeeType}">${currentdrink.coffeeType}</option>
+		<option value="${currentdrink.drinkType}">${currentdrink.drinkType}</option>
 		<option value="Cappuccino">Cappuccino</option>
 		<option value="Expresso">Expresso</option>
 		<option value="Macchiato">Macchiato</option>
 	</select><br />
 <br/>
 </c:forEach>
-<input type ="submit" value = "edit drink" name="doThisToOrder">
+<input type ="submit" value = "editDrink" name="doThisToOrder">
 </form>
 <br/>
+
 <form method = "post" action="viewEditThisOrderServlet">
-<div>
+
 <!-- <h2>Customer: ${customerToEdit.firstName} ${customerToEdit.lastName} <br />
  Order: ${orderToEdit.orderID} </h2>  -->
  <h5>2nd version of view/edit list of drinks in this order</h5>
+ <!-- ??If did this version would have to then create & direct to a DrinkNavigationServlet?? -->
 <h3>Please select which drink you wish to edit or delete. </h3>
 <input type="hidden" name="orderID" value="${orderToEdit.orderID}">
 
 <table>
-<!-- <c:forEach items="${orderToEdit.drinkListToEdit}" var="currentdrink"></c:forEach> -->
-<!-- <c:forEach items="${orderToEdit.drinkList}" var="currentdrink"></c:forEach> -->
-<c:forEach items="${requestScope.drinkListToEdit}" var="currentdrink">
+<c:forEach items="${requestScope.orderToEdit.drinkList}" var="currentdrink">
 <tr>
 
 <!-- <td><input type="hidden" name="orderID" value="${currentorder.orderID}"></td> -->
 <td><input type="radio" name="drinkID" value="${currentdrink.drinkID}"></td>
-<td>Drink displaySingleDrink version: ${currentdrink.displaySingleDrinkDetails()}</td>
+<td>Drink #: ${currentdrink.drinkID}-- Size: ${currentdrink.drinkSize} |  Type: ${currentdrink.drinkType} | Price: $ ${currentdrink.basePrice}</td>
 </tr>
 </c:forEach>
 </table>
 <br/>
-
-<h5>Testing to see which version works - looks best - version 3 using displaydrinkDetails</h5>
-
-<table>
-<c:forEach items="${requestScope.drinkListToEdit}" var="currentdrink">
-<tr>
-<td><input type="hidden" name="drinkID" value="${currentdrink.drinkID}"></td>
-<!-- <td><input type="radio" name="drinkID" value="${currentdrink.drinkID}"></td> -->
-
-<td>Order displayDrinkDetails version: ${currentdrink.displayDrinkDetails(currentdrink.drinkID)}</td>
-
-</tr>
-</c:forEach>
-</table>
+<br/>
 
 <!-- ???Add in section here to edit customer name/number or way to route to Servlet/jsp
 for editing/deleting just the customer??? -->
-<input type ="submit" value = "edit drink" name="doThisToOrder">
-<input type ="submit" value = "delete drink from order" name="doThisToOrder">
+<!-- <input type ="submit" value = "editDrink" name="doThisToOrder"> -->
+<input type ="submit" value = "deleteDrinkFromOrder" name="doThisToOrder">
 <!-- </form> -->
-</div>
 
-<div>
+<br/>
+<br/>
+<div class="coffee-menu">
 <!-- <form method="post" action="addDrinkToOrderServlet" > -->
 <!-- <form method="post" action="viewEditThisOrderServlet" > -->
 <input type="hidden" name="drinkID" value="${orderToEdit.orderID}">
-<h5>Add drink portion of view/edit list of drinks in this order</h5>
+
 <h3>Add another drink to current order: </h3>
 <br>
   <h2>Coffee Shop Menu</h2>
@@ -120,18 +123,21 @@ for editing/deleting just the customer??? -->
 		<option value="Latte">Latte</option>
 		<option value="Macchiato">Caffe Macchiato</option>
 	</select><br /> 
-	<input type ="submit" value = "add drink to order" name="doThisToOrder">	
+	<br/>
+	<input type ="submit" value = "addDrinkToOrder" name="doThisToOrder">	
    <!-- ><input type="submit" value="Add to Order"> -->
 </div>
+<br/>
+<br/>
 </form>
-</div>
 
-<div>
-<a href="index.html">Return to main page to start a new order</a><br />
-<a href="viewAllCustomersServlet">View list of all Customers in table</a><br />
-<a href="viewAllDrinksServlet">View list of all Drinks in table</a><br />
-<a href="viewEditThisOrderServlet">Refresh page/Review this Order</a>
-</div>
+ 
+<!--<div>-->
+<!--<a href="index.html">Return to main page to start a new order</a><br />-->
+<!-- <a href="viewAllCustomersServlet">View list of all Customers in table</a><br /> -->
+<!-- <a href="viewAllDrinksServlet">View list of all Drinks in table</a><br /> -->
+<!-- <a href="viewEditThisOrderServlet">Refresh page/Review this Order</a>-->
+<!-- </div>  -->
 
 </body>
 </html>

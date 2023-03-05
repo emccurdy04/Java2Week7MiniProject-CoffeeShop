@@ -10,14 +10,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import model.Drink;
 import model.Order;
 //import model.Customer;
-import model.ListCustomer;
+//import model.ListCustomer;
 
 /**
  * OrderHelper class DAO Data Access Object - does all the
@@ -26,6 +25,7 @@ import model.ListCustomer;
 public class OrderHelper {
 
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CoffeeShop");
+
 	
 	public void createNewOrder(Order orderToAdd) {
 		EntityManager em = emfactory.createEntityManager();
@@ -47,7 +47,8 @@ public class OrderHelper {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		//TypedQuery<Order> typedQuery = em.createQuery("SELECT order FROM Orders order WHERE order.orderID = :selectedOrderID", Order.class);
-		TypedQuery<Order> typedQuery = em.createQuery("SELECT o FROM Orders o WHERE order.orderID = :selectedOrderID", Order.class);
+		//TypedQuery<Order> typedQuery = em.createQuery("SELECT o FROM Orders o WHERE order.orderID = :selectedOrderID", Order.class);
+		TypedQuery<Order> typedQuery = em.createQuery("SELECT o FROM Orders o WHERE o.orderID = :selectedOrderID", Order.class);
 		typedQuery.setParameter("selectedOrderID", orderToDelete.getOrderID());
 		typedQuery.setMaxResults(1);
 		
@@ -80,7 +81,8 @@ public class OrderHelper {
 	public List<Order> searchForOrderByID(int orderID) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Order> typedQuery = em.createQuery("SELECT order FROM Orders order WHERE order.orderID =: selectedOrderID", Order.class);
+		//TypedQuery<Order> typedQuery = em.createQuery("SELECT order FROM Orders order WHERE order.orderID =: selectedOrderID", Order.class);
+		TypedQuery<Order> typedQuery = em.createQuery("SELECT order FROM Orders order WHERE o.orderID =: selectedOrderID", Order.class);
 		typedQuery.setParameter("selectedOrderID", orderID);
 		List<Order> foundOrders = typedQuery.getResultList();
 		em.close();

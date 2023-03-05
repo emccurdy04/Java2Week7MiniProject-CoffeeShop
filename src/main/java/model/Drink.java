@@ -23,8 +23,9 @@ import controller.DrinkHelper;
 //Will uncomment below annotation lines once basics working & ready to add join
 //???may not need to create an entity for this & just use it as a basic class that
 //???is used by Order class
-@Entity
-@Table(name="DRINKS")
+
+@Entity(name="Drinks")
+@Table(name="Drinks")
 public class Drink {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

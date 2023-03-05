@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Page to display all Drinks in DB table with details</title>
-<style type="text/css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- <style type="text/css">
 body {font-family: Times New Roman, Times, serif;}
-</style>
+</style> -->
 </head>
 
 <body>
@@ -18,13 +19,15 @@ Coffee Shop Drinks List: </h1>
 </header>
 <div>
 <c:forEach items="${requestScope.allDrinks}" var="currentdrink">
-Drink: ${currentdrink.toString()} <br />
+Drink #: ${currentdrink.drinkID} <br>Size: ${currentdrink.drinkSize}  |  
+Type: ${currentdrink.drinkType}  |  Price: $ ${currentdrink.basePrice}<br />
+<!-- Drink: ${currentdrink.toString()} <br /> -->
 <br>
 </c:forEach>
 <br />
 <br /> 
 <a href="index.html">Return to main page to start a new order</a><br />
-<a href="viewAllCustomersServlet">View list of all Customers in table</a><br />
+<!-- <a href="viewAllCustomersServlet">View list of all Customers in table</a><br /> -->
 <a href="viewAllDrinksServlet">Refresh page/View list of all Drinks in table</a><br />
 <a href="viewAllOrdersServlet">View all Orders in table</a>
 </div>

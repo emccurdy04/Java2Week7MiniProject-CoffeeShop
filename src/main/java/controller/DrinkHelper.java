@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 import model.Drink;
 import model.Order;
 //import model.Customer;
-import model.ListCustomer;
+//import model.ListCustomer;
 
 /**
  * DrinkHelper class DAO Data Access Object - does all the
@@ -24,7 +24,8 @@ import model.ListCustomer;
  */
 public class DrinkHelper {
 	
-static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CoffeeShop");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("CoffeeShop");
+	
 	
 	/**
 	 * Method to create a new Drink object/entity & add to Drinks table
