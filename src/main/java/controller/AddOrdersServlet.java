@@ -136,7 +136,6 @@ public class AddOrdersServlet extends HttpServlet {
 			//use constructor: Order(String firstName, String lastName, String phoneNumber, Drink drink, LocalDate date)
 			Order newOrder = new Order(firstName, lastName, phoneNumber, newDrink, date);
 			ohdao.createNewOrder(newOrder);
-			ohdao.createNewOrder(newOrder);
 			// ???Now directed to page to viewEditThisOrderServlet- ?would have to 
 			// somehow pass this objects Order ID to the Servlet or .jsp to do this
 			//getServletContext().getRequestDispatcher("/viewEditThisOrderServlet").forward(request, response);

@@ -30,6 +30,7 @@ Coffee Shop Orders List: </h1></header>
 <td>Order#: ${currentorder.orderID}  | Order Date: ${currentorder.date}<br/>
 Customer: ${currentorder.firstName} ${currentorder.lastName} <br />
 Phone Number:${currentorder.phoneNumber}<br>
+Order Total: $ ${currentorder.totalPrice}
 Drink(s):
 <c:forEach items="${currentorder.drinkList}" var="listVal">
 <td>Drink #: ${listVal.drinkID} -- Size: ${listVal.drinkSize} |  Type: ${listVal.drinkType} | Price: $ ${listVal.basePrice}</td>

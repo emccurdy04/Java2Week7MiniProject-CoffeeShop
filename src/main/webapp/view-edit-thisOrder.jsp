@@ -34,16 +34,17 @@ Coffee Shop: View/Edit/Add Drink to Order Page</h1></header>
 <!-- <h2>Customer: ${customerToEdit.firstName} ${customerToEdit.lastName} <br />
  Order: ${orderToEdit.orderID} </h2> -->
  
- <h3>Customer: ${orderToEdit.firstName} ${orderToEdit.lastName} <br />
+<h3>Customer: ${orderToEdit.firstName} ${orderToEdit.lastName} <br />
  Order #: ${orderToEdit.orderID} </h3>
-
-<form method="post" action="viewEditThisOrderServlet">
-<h3>Please select drink to edit. </h3> <br/>
-<input type="hidden" name="orderID" value="${orderToEdit.orderID}">
-<input type="radio" name="drinkID" value="${currentdrink.drinkID}">
+ 
+<!-- <form method="post" action="viewEditThisOrderServlet">
+<h3>Please select drink to edit. </h3>
+<input ${requestScope.orderToEdit} type="hidden" name="orderID" value="${orderToEdit.orderID}"> -->
+<!-- <input type="radio" name="drinkID" value="${currentdrink.drinkID}"> -->
 <!-- 
 <c:forEach items="${requestScope.drinkListToEdit}" var="currentdrink"></c:forEach> -->
-<c:forEach items="${orderToEdit.drinkList}" var="currentdrink">
+<!--<c:forEach items="${requestScope.orderToEdit.drinkList}" var="currentdrink">
+<input type="radio" name="drinkID" value="${currentdrink.drinkID}">
 Drink #: ${currentdrink.drinkID} <br/>
 Drink Size: <select id="coffeeSize" name="coffeeSizeInput">
 		<option value="${currentdrink.drinkSize}">${currentdrink.drinkSize}</option>
@@ -61,18 +62,15 @@ Drink Type:<select id="coffeeType" name="coffeeTypeInput">
 <br/>
 </c:forEach>
 <input type ="submit" value = "editDrink" name="doThisToOrder">
-</form>
-<br/>
+</form> -->
 
 <form method = "post" action="viewEditThisOrderServlet">
 
 <!-- <h2>Customer: ${customerToEdit.firstName} ${customerToEdit.lastName} <br />
  Order: ${orderToEdit.orderID} </h2>  -->
- <h5>2nd version of view/edit list of drinks in this order</h5>
  <!-- ??If did this version would have to then create & direct to a DrinkNavigationServlet?? -->
-<h3>Please select which drink you wish to edit or delete. </h3>
+<h3>Please select which drink you wish to Edit or Delete from order. </h3>
 <input type="hidden" name="orderID" value="${orderToEdit.orderID}">
-
 <table>
 <c:forEach items="${requestScope.orderToEdit.drinkList}" var="currentdrink">
 <tr>
@@ -88,17 +86,19 @@ Drink Type:<select id="coffeeType" name="coffeeTypeInput">
 
 <!-- ???Add in section here to edit customer name/number or way to route to Servlet/jsp
 for editing/deleting just the customer??? -->
-<!-- <input type ="submit" value = "editDrink" name="doThisToOrder"> -->
+<input type ="submit" value = "editDrink" name="doThisToOrder">
 <input type ="submit" value = "deleteDrinkFromOrder" name="doThisToOrder">
-<!-- </form> -->
+</form>
 
 <br/>
 <br/>
+
+<form method = "post" action="viewEditThisOrderServlet">
 <div class="coffee-menu">
 <!-- <form method="post" action="addDrinkToOrderServlet" > -->
 <!-- <form method="post" action="viewEditThisOrderServlet" > -->
-<input type="hidden" name="drinkID" value="${orderToEdit.orderID}">
-
+<input type="hidden" name="orderID" value="${orderToEdit.orderID}">
+<!-- <input type="hidden" name="drinkID" value="${orderToEdit.orderID}"> -->
 <h3>Add another drink to current order: </h3>
 <br>
   <h2>Coffee Shop Menu</h2>

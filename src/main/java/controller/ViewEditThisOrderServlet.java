@@ -103,6 +103,7 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				//}
 				//ohdao.deleteOrder(orderToDelete);
 				ohdao.updateOrder(orderToEdit);
+				request.setAttribute("orderToEdit", orderToEdit);
 				// refresh page
 				path="/view-edit-thisOrder.jsp";	
 			} catch (NumberFormatException e) {
@@ -119,18 +120,21 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				Integer tempOrderId = Integer.parseInt(request.getParameter("orderID"));
 				Integer tempDrinkId = Integer.parseInt(request.getParameter("drinkID"));
 				Drink drinkToEdit = dhdao.searchForDrinkById(tempDrinkId);
-				String coffeeSize = request.getParameter("coffeeSizeInput");
-				String coffeeType = request.getParameter("coffeeTypeInput");
-				drinkToEdit.setDrinkSize(coffeeSize);
-				drinkToEdit.setDrinkType(coffeeType);
-				drinkToEdit.setBasePrice(coffeeSize);
-				dhdao.updateDrink(drinkToEdit);
+				request.setAttribute("drinkToEdit", drinkToEdit);
+				//String coffeeSize = request.getParameter("coffeeSizeInput");
+				//String coffeeType = request.getParameter("coffeeTypeInput");
+				//request.setAttribute("drinkToEdit", drinkToEdit);
+				//drinkToEdit.setDrinkSize(coffeeSize);
+				//drinkToEdit.setDrinkType(coffeeType);
+				//drinkToEdit.setBasePrice(coffeeSize);
+				//dhdao.updateDrink(drinkToEdit);
 				Order orderToEdit = ohdao.searchForOrderById(tempOrderId);
-				request.setAttribute("orderToEdit", orderToEdit);
-				ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
-				request.setAttribute("drinkListToEdit", drinkListToEdit);
-				double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
-				orderToEdit.setTotalPrice(newTotalPrice);
+				//ohdao.updateOrder(orderToEdit);
+				//request.setAttribute("orderToEdit", orderToEdit);
+				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
+				//request.setAttribute("drinkListToEdit", drinkListToEdit);
+				//double newTotalPrice = orderToEdit.calcTotalPrice(drinkListToEdit);
+				//orderToEdit.setTotalPrice(newTotalPrice);
 				//Integer tempCustId = orderToEdit.getCustomerID();
 				//Customer customerToEdit = dao.searchForCustomerById(tempCustId);
 				//ListCustomer customerToEdit = dao.searchForCustomerById(tempCustId);
@@ -138,9 +142,11 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				// get updated Order object's drinkListToEdit after drink edited
 				//ArrayList<Drink> drinkListToEdit = orderToEdit.getDrinkList();
 				//request.setAttribute("drinkListToEdit", drinkListToEdit);
-				ohdao.updateOrder(orderToEdit);
+				//ohdao.updateOrder(orderToEdit);
+				request.setAttribute("orderToEdit", orderToEdit);
 				// refresh page
-				path="/view-edit-thisOrder.jsp";
+				//path="/view-edit-thisOrder.jsp";
+				path="/view-edit-thisDrink.jsp";
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to select a drink to edit in order");
 			}
@@ -169,6 +175,7 @@ public class ViewEditThisOrderServlet extends HttpServlet {
 				//request.setAttribute("drinkListToEdit", drinkListToEdit);
 				ohdao.updateOrder(orderToEdit);
 				// refresh page
+				request.setAttribute("orderToEdit", orderToEdit);
 				path="/view-edit-thisOrder.jsp";
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to input details for drink to add to order");
